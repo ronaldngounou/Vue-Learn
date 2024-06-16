@@ -1,16 +1,22 @@
 <template>
     <div>
+        <p> <a v-bind:href="url" target="_blank">Google</a> </p>
         <h1>
             {{ fullname() }}
         </h1> 
         <hr />
-
+        <p> age: {{ age }}</p>
         <label>First Name</label>
         <input type="text" v-model="firstName"/>
         <br/>
         
         <label>Last Name</label>
-        <input type="text" v-model="lastName"/>
+        <input type="text" :value="lastName" @input="updateLastName"/>
+        <br/>
+        <button type="button" v-on:click="IncrementAge()">Increment</button> <br/>
+        <button type="button" v-on:click="age--">Decrement</button>
+        
+        <br/>
 
     </div>
 </template>
@@ -20,13 +26,24 @@
         data() {
             return {
                 firstName: 'Hello',
-                lastName: 'Tom'
+                lastName: 'Tom',
+                url: 'https://www.google.com',
+                age: 10,
             };
         },
 
         methods: {
             fullname() {
                 return `${this.firstName} ${this.lastName.toUpperCase()}`
+            },
+            IncrementAge() {
+                this.age++;
+            },
+            mouseOver() {
+                this.count++;
+            },
+            updateLastName(event) {
+                this.lastName = event.target.value;
             }
         },
 
@@ -38,4 +55,5 @@
     h1 {
         color: red;
     }
+    
 </style>
