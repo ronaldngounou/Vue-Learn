@@ -11,7 +11,7 @@
         <br/>
         
         <label>Last Name</label>
-        <input type="text" :value="lastName" @input="updateLastName"/>
+        <input type="text" :value="lastName" @input="updateLastName(`Last name trigered`, $event)"/>
         <br/>
         <button type="button" v-on:click="IncrementAge()">Increment</button> <br/>
         <button type="button" v-on:click="age--">Decrement</button>
@@ -42,7 +42,9 @@
             mouseOver() {
                 this.count++;
             },
-            updateLastName(event) {
+            updateLastName(msg, event) {
+                event.preventDefault();
+                console.log(msg);
                 this.lastName = event.target.value;
             }
         },
