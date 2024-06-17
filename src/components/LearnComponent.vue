@@ -2,7 +2,7 @@
     <div>
         <p> <a v-bind:href="url" target="_blank">Google</a> </p>
         <h1>
-            {{ fullname() }}
+            {{ fullname }}
         </h1> 
         <hr />
         <p> age: {{ age }}</p>
@@ -46,9 +46,16 @@
                 event.preventDefault();
                 console.log(msg);
                 this.lastName = event.target.value;
+                console.log(this.lastName);
             }
         },
 
+        computed: {
+            fullname() {
+                console.log('fullname computed property called');
+                return `${this.firstName} ${this.lastName.toUpperCase()}`
+            }
+        }
 
     }
 </script>
